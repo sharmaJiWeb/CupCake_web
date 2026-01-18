@@ -1,0 +1,888 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-secondary);
+    color: var(--text-body);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--text-heading);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-text);
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, background-color 0.2s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 158, 170, 0.4);
+}
+
+/* Animations */
+@keyframes jelly {
+
+    0%,
+    100% {
+        transform: scale(1, 1);
+    }
+
+    30% {
+        transform: scale(1.25, 0.75);
+    }
+
+    40% {
+        transform: scale(0.75, 1.25);
+    }
+
+    50% {
+        transform: scale(1.15, 0.85);
+    }
+
+    65% {
+        transform: scale(0.95, 1.05);
+    }
+
+    75% {
+        transform: scale(1.05, 0.95);
+    }
+}
+
+.btn:hover {
+    background-color: var(--btn-primary-hover);
+    animation: jelly 0.6s;
+    /* Removed simple transform to let animation take over, or coordinate them */
+}
+
+/* Feature/Flavor Card Hover */
+.feature-card,
+.footer-widget,
+.highlight-image img {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy spring transition */
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) rotate(2deg);
+    /* No shadow change needed if not defined, but could add one */
+}
+
+/* Nav Link Hover - Cute underline */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--accent-dark-pink);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+/* Footer Links Hover */
+.footer-links a {
+    color: var(--text-body);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-links a:hover {
+    color: var(--accent-dark-pink);
+    padding-left: 8px;
+    background: rgba(255, 158, 170, 0.1);
+    border-radius: 10px;
+    padding-right: 8px;
+}
+
+.main-header {
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-heading);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-heading);
+}
+
+/* Hero Section */
+.hero-section {
+    background: var(--bg-primary);
+    /* Fallback */
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+    /* Space for header */
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 6.75rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--text-heading);
+}
+
+.hero-text p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.hero-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* The blob shape behind the hero cupcake could be an image or a div */
+.hero-blob {
+    position: absolute;
+    width: 1100px;
+    height: 1100px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 46% 54% 41% 59% / 53% 42% 58% 47%;
+    z-index: 0;
+    animation: blob-float 10s ease-in-out infinite;
+    display: none;
+    right: -200px;
+    /* Offset to prevent covering text completely if needed */
+}
+
+.hero-img {
+    position: relative;
+    z-index: 1;
+    width: 1000px;
+    max-width: none;
+    /* Allow it to overflow the container */
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.1));
+    transform: translateX(-150px);
+    /* Move more left */
+}
+
+@keyframes blob-float {
+
+    0%,
+    100% {
+        border-radius: 46% 54% 41% 59% / 53% 42% 58% 47%;
+        transform: translate(0, 0);
+    }
+
+    50% {
+        border-radius: 55% 45% 58% 42% / 44% 56% 44% 56%;
+        transform: translate(-10px, 10px);
+    }
+}
+
+/* Wave Separator */
+.wave-divider {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.wave-divider .shape-fill {
+    fill: #FFFFFF;
+}
+
+/* Features Section */
+.features-section {
+    padding: 6rem 0;
+    background-color: var(--bg-secondary);
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature-icon-blob {
+    width: 130px;
+    height: 130px;
+    background-color: var(--accent-yellow);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.feature-card img {
+    width: 80px;
+}
+
+.feature-card h3 {
+    font-size: 1.8rem;
+}
+
+/* Highlight Sections (Alternating) */
+.highlight-section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.highlight-container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.highlight-section.reverse .highlight-container {
+    flex-direction: row-reverse;
+}
+
+.highlight-image {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.blob-bg {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    z-index: 0;
+    border-radius: 46% 54% 41% 59% / 53% 42% 58% 47%;
+}
+
+.blob-pink {
+    background-color: var(--accent-pink);
+}
+
+.blob-yellow {
+    background-color: var(--accent-yellow);
+}
+
+.blob-orange {
+    background-color: var(--accent-orange);
+}
+
+.highlight-image img {
+    position: relative;
+    z-index: 1;
+    max-width: 80%;
+    border-radius: 20px;
+    /* Or masked */
+}
+
+/* Specific curve for images if we want to mask them exactly like the design often implies */
+/* But in the design, the cupcakes sit ON TOP of blobs, they aren't masked BY blobs usually. */
+
+.highlight-text {
+    flex: 1;
+}
+
+.highlight-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-heading);
+}
+
+.highlight-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-body);
+}
+
+/* Footer */
+.main-footer {
+    position: relative;
+    background-color: var(--bg-secondary);
+    /* Changed from pink to white/secondary for cleaner look, wave will handle transition from pink if needed, or we keep pink background but style differently */
+    background-color: #FFF0F5;
+    /* Keep base consistent */
+    padding-top: 8rem;
+    margin-top: 4rem;
+}
+
+.footer-wave-top {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.footer-wave-top svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+}
+
+.footer-wave-top .shape-fill {
+    fill: #FFFFFF;
+}
+
+/* New Footer Content Grid */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    color: var(--text-heading);
+}
+
+.footer-widget h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-widget h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-dark-pink);
+    border-radius: 3px;
+}
+
+.footer-description {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text-body);
+}
+
+/* Social Icons */
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    color: var(--accent-dark-pink);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.social-links a:hover {
+    background-color: var(--accent-dark-pink);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-body);
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-links a:hover {
+    color: var(--accent-dark-pink);
+    padding-left: 5px;
+}
+
+/* Newsletter */
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    padding: 12px;
+    border: 1px solid #ffdde1;
+    border-radius: 5px;
+    outline: none;
+    font-family: var(--font-body);
+}
+
+.newsletter-form button {
+    padding: 12px;
+    background-color: var(--accent-dark-pink);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--btn-primary-hover);
+}
+
+/* Copyright */
+.footer-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 0;
+    text-align: center;
+    color: var(--text-body);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+/* Default Fade Up */
+.animate-on-scroll {
+    transform: translateY(30px);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pop In Effect (Scale Up) */
+.animate-on-scroll.pop-in {
+    transform: scale(0.8) translateY(20px);
+}
+
+.animate-on-scroll.pop-in.visible {
+    transform: scale(1) translateY(0);
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy */
+}
+
+/* Slide In From Left */
+.animate-on-scroll.slide-left {
+    transform: translateX(-50px);
+}
+
+.animate-on-scroll.slide-left.visible {
+    transform: translateX(0);
+}
+
+/* Slide In From Right */
+.animate-on-scroll.slide-right {
+    transform: translateX(50px);
+}
+
+.animate-on-scroll.slide-right.visible {
+    transform: translateX(0);
+}
+
+/* Stagger Delays */
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+/* Responsiveness */
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-heading);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Open state for hamburger */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+    .hero-text h1 {
+        font-size: 5rem;
+    }
+
+    .hero-blob {
+        width: 800px;
+        height: 800px;
+        right: -300px;
+    }
+
+    .hero-img {
+        width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 1rem;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    /* Mobile Navigation Drawer */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        /* Hide the order button in header on very small screens if it crowds, or keep it */
+        /* For now, let's keep it but maybe scale it down if needed */
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 2rem;
+        gap: 0;
+    }
+
+    .hero-text {
+        margin-top: -50px;
+        /* Pull text up over the image bottom slightly */
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-text p {
+        margin: 0 auto 2rem;
+    }
+
+    .hero-image-wrapper {
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        /* Clip the big blob/image so it doesn't overflow width */
+    }
+
+    .hero-blob {
+        width: 500px;
+        height: 500px;
+        top: 0;
+        right: 50%;
+        transform: translateX(50%);
+        left: auto;
+    }
+
+    .hero-img {
+        width: 450px;
+        transform: translateX(0);
+        /* Reset the desktop shift */
+        left: 30px;
+        /* Slight adjustment to center visually */
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        padding: 0 2rem;
+    }
+
+    .highlight-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .highlight-section.reverse .highlight-container {
+        flex-direction: column;
+    }
+
+    .highlight-image img {
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .blob-bg {
+        width: 300px;
+        height: 300px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-img {
+        width: 350px;
+        left: 20px;
+    }
+}
+
+/* Interactive Cards Generic Class */
+.hover-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.hover-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 158, 170, 0.2);
+}
+
+/* Page Loader */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-secondary);
+    /* White background */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+#loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-cupcake {
+    font-size: 3rem;
+    animation: bounce 0.6s infinite alternate;
+    margin-bottom: 1rem;
+    color: var(--accent-dark-pink);
+}
+
+.loader-text {
+    font-family: var(--font-heading);
+    color: var(--text-heading);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Micro-Interactions */
+input,
+textarea {
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--accent-pink) !important;
+    box-shadow: 0 0 15px rgba(255, 154, 158, 0.4);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* Cute Selection Color */
+::selection {
+    background: var(--accent-pink);
+    color: white;
+}
