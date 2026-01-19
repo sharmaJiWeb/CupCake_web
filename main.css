@@ -98,11 +98,11 @@ a {
 }
 
 /* Nav Link Hover - Cute underline */
-.nav-links a {
+.nav-links a:not(.btn) {
     position: relative;
 }
 
-.nav-links a::after {
+.nav-links a:not(.btn)::after {
     content: '';
     position: absolute;
     width: 0;
@@ -115,7 +115,7 @@ a {
     transform: translateX(-50%);
 }
 
-.nav-links a:hover::after {
+.nav-links a:not(.btn):hover::after {
     width: 80%;
 }
 
@@ -141,6 +141,7 @@ a {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
     width: 100%;
     z-index: 1000;
     background-color: rgba(255, 255, 255, 0.9);
@@ -173,6 +174,10 @@ a {
     font-weight: 600;
     font-size: 1rem;
     color: var(--text-heading);
+}
+
+.nav-links .btn {
+    color: var(--btn-text);
 }
 
 /* Hero Section */
@@ -618,8 +623,10 @@ a {
     display: none;
     flex-direction: column;
     gap: 5px;
+    gap: 5px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 2000;
+    /* Ensure above everything */
 }
 
 .mobile-menu-toggle span {
@@ -682,7 +689,8 @@ a {
         align-items: center;
         transition: right 0.4s ease;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
-        z-index: 999;
+        z-index: 1500;
+        /* Above header (1000) but below toggle (2000) */
     }
 
     .nav-links.active {
@@ -691,17 +699,21 @@ a {
 
     .nav-links li {
         margin: 1.5rem 0;
+        width: 100%;
+        text-align: center;
     }
 
     .nav-links a {
         font-size: 1.5rem;
     }
 
-    .btn {
-        /* Hide the order button in header on very small screens if it crowds, or keep it */
-        /* For now, let's keep it but maybe scale it down if needed */
-        padding: 10px 20px;
-        font-size: 1rem;
+    /* Order Button in mobile menu */
+    .nav-links .btn {
+        margin-top: 1rem;
+        display: inline-block;
+        font-size: 1.2rem;
+        padding: 15px 40px;
+        color:white;
     }
 
     .hero-content {
