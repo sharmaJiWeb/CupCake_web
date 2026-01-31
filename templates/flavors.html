@@ -1,0 +1,447 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/flavors.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Header Section -->
+<header class="flavors-header">
+    <h1>Our Delectable Menu</h1>
+    <p>Discover our range of handcrafted cupcakes, baked fresh every morning with premium ingredients and a whole lot of
+        love.</p>
+</header>
+
+<main class="container" style="display: block; width: 100%; max-width: 100%;">
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All Flavors</button>
+        <button class="filter-btn" data-filter="Classic">Classics</button>
+        <button class="filter-btn" data-filter="Chocolaty">Chocolate Lovers</button>
+        <button class="filter-btn" data-filter="Fruity">Fruity Fresh</button>
+        <button class="filter-btn" data-filter="Specialty">Specialty</button>
+        <button class="filter-btn" data-filter="Vegan">Vegan</button>
+    </div>
+
+
+    <!-- Flavors Grid -->
+    <div class="flavors-grid">
+
+        <!-- Flavor 1 -->
+        <div class="flavor-card" data-category="Classic">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80"
+                    alt="Red Velvet">
+                <span class="flavor-badge">Best Seller</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Red Velvet</h3>
+                <p class="flavor-description">Our signature buttermilk southern red velvet cake topped with tangy-sweet
+                    cream cheese frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.50</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 2 -->
+        <div class="flavor-card" data-category="Chocolaty">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/double_chocolate.png') }}" alt="Double Chocolate">
+                <span class="flavor-badge">Rich</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Double Chocolate</h3>
+                <p class="flavor-description">Decadent chocolate sponge enriched with cocoa, topped with a velvety milk
+                    chocolate ganache.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 3 -->
+        <div class="flavor-card" data-category="Classic">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&w=600&q=80"
+                    alt="Vanilla Bean">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Vanilla Bean</h3>
+                <p class="flavor-description">Light and fluffy vanilla cake made with pure Madagascar vanilla extract
+                    and buttercream.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.50</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 4 -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80"
+                    alt="Salted Caramel">
+                <span class="flavor-badge">Gourmet</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Salted Caramel</h3>
+                <p class="flavor-description">Sweet caramel infused cake with a pinch of sea salt and a crunchy toffee
+                    topping.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.00</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 5 -->
+        <div class="flavor-card" data-category="Fruity">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=600&q=80"
+                    alt="Strawberry Fields">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Strawberry Fields</h3>
+                <p class="flavor-description">Fresh strawberry cake made with real fruit puree, topped with strawberry
+                    buttercream.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 6 -->
+        <div class="flavor-card" data-category="Fruity">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/lemon_meringue.png') }}" alt="Lemon Meringue">
+                <span class="flavor-badge">Zesty</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Lemon Meringue</h3>
+                <p class="flavor-description">Zesty lemon cake filled with homemade lemon curd and topped with toasted
+                    meringue.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.00</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 7 -->
+        <div class="flavor-card" data-category="Chocolaty">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=600&q=80"
+                    alt="Peanut Butter Cup">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Peanut Butter Cup</h3>
+                <p class="flavor-description">Rich chocolate cake paired with a creamy, salty-sweet peanut butter
+                    frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 8 -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80"
+                    alt="Matcha Green Tea">
+                <span class="flavor-badge">New</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Matcha Green Tea</h3>
+                <p class="flavor-description">Earthy premium matcha green tea cake with a delicate white chocolate
+                    drizzle.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.25</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 9 -->
+        <div class="flavor-card" data-category="Vegan">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80"
+                    alt="Vegan Carrot">
+                <span class="flavor-badge">Vegan</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Vegan Carrot</h3>
+                <p class="flavor-description">Incredbly moist spiced carrot cake made with plant-based ingredients and
+                    dairy-free frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.00</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Flavor 10 -->
+        <div class="flavor-card" data-category="Chocolaty">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1599785209707-a456fc1337bb?auto=format&fit=crop&w=600&q=80"
+                    alt="Cookies & Cream">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Cookies & Cream</h3>
+                <p class="flavor-description">Vanilla cake packed with real cookie chunks and topped with Oreo crushed
+                    frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 11: Black Forest -->
+        <div class="flavor-card" data-category="Chocolaty">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/black_forest.png') }}" alt="Black Forest">
+                <span class="flavor-badge">Classic</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Black Forest</h3>
+                <p class="flavor-description">Rich chocolate cake layered with cherries and whipped cream shavings.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.00</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 12: Coconut Dream -->
+        <div class="flavor-card" data-category="Fruity">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/coconut_dream.png') }}" alt="Coconut Dream">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Coconut Dream</h3>
+                <p class="flavor-description">Tropical coconut cake topped with fluffy marshmallow meringue and flakes.
+                </p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 13: Raspberry Swirl -->
+        <div class="flavor-card" data-category="Fruity">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/raspberry_swirl.png') }}" alt="Raspberry Swirl">
+                <span class="flavor-badge">Fruity</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Raspberry Swirl</h3>
+                <p class="flavor-description">Vanilla sponge swirled with fresh raspberry coulis and berry frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 14: Espresso Delight -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/espresso_delight.png') }}" alt="Espresso Delight">
+                <span class="flavor-badge">Buzz</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Espresso Delight</h3>
+                <p class="flavor-description">Coffee-infused cake with a rich mocha buttercream and bean garnish.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.00</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 15: Pistachio Rose -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Pistachio Rose">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Pistachio Rose</h3>
+                <p class="flavor-description">Light pistachio cake paired with fragrant rosewater buttercream.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.50</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 16: Banana Nut -->
+        <div class="flavor-card" data-category="Vegan">
+            <div class="flavor-image">
+                <img src="https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Banana Nut">
+                <span class="flavor-badge">Vegan</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Banana Nut</h3>
+                <p class="flavor-description">Moist banana cake with crushed walnuts and dairy-free cinnamon frosting.
+                </p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Flavor 17: Tiramisu -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=600&q=80"
+                    alt="Tiramisu">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Tiramisu</h3>
+                <p class="flavor-description">Sponge soaked in espresso, topped with mascarpone cheese frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.25</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 18: Blueberry Lemon -->
+        <div class="flavor-card" data-category="Fruity">
+            <div class="flavor-image">
+                <img src="https://images.pexels.com/photos/1055271/pexels-photo-1055271.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Blueberry Lemon">
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Blueberry Lemon</h3>
+                <p class="flavor-description">Zesty lemon cake dotted with fresh blueberries and lemon glaze.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 19: Maple Pecan -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/feature_waffle.png') }}" alt="Maple Pecan">
+                <span class="flavor-badge">Seasonal</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Maple Pecan</h3>
+                <p class="flavor-description">Sweet maple cake with toasted pecans and a caramel drizzle.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.25</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 20: Triple Chocolate -->
+        <div class="flavor-card" data-category="Chocolaty">
+            <div class="flavor-image">
+                <img src="https://images.pexels.com/photos/132694/pexels-photo-132694.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Triple Chocolate">
+                <span class="flavor-badge">Decadent</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Triple Chocolate</h3>
+                <p class="flavor-description">Chocolate cake, chocolate ganache filling, and dark chocolate frosting.
+                </p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.50</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 21: S'mores Surprise -->
+        <div class="flavor-card" data-category="Chocolaty">
+            <div class="flavor-image">
+                <img src="https://images.pexels.com/photos/1098592/pexels-photo-1098592.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="S'mores Surprise">
+                <span class="flavor-badge">Fun</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">S'mores Surprise</h3>
+                <p class="flavor-description">Chocolate cake with marshmallow filling, topped with toasted meringue and
+                    graham crackers.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.25</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 22: Chai Spice -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="{{ url_for('static', filename='images/feature_cream.png') }}" alt="Chai Spice">
+                <span class="flavor-badge">Aromatic</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Chai Spice</h3>
+                <p class="flavor-description">Spiced Chai tea cupcake with a warm cinnamon buttercream frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 23: Mango Tango -->
+        <div class="flavor-card" data-category="Fruity">
+            <div class="flavor-image">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=600&q=80"
+                    alt="Mango Tango">
+                <span class="flavor-badge">Summer</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Mango Tango</h3>
+                <p class="flavor-description">Fresh mango cupcake with a tropical mango infused frosting.</p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$3.75</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flavor 24: Pumpkin Spice -->
+        <div class="flavor-card" data-category="Specialty">
+            <div class="flavor-image">
+                <img src="https://images.pexels.com/photos/3081657/pexels-photo-3081657.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Pumpkin Spice">
+                <span class="flavor-badge">Seasonal</span>
+            </div>
+            <div class="flavor-content">
+                <h3 class="flavor-title">Pumpkin Spice</h3>
+                <p class="flavor-description">Moist pumpkin cupcake with a rich cream cheese frosting and cinnamon dust.
+                </p>
+                <div class="flavor-footer">
+                    <span class="flavor-price">$4.00</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/flavors.js') }}"></script>
+{% endblock %}

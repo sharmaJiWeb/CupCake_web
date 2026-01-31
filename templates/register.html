@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container" style="justify-content: center; min-height: 80vh;">
+    <div
+        style="max-width: 400px; width: 100%; padding: 40px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+        <h2 style="text-align: center; margin-bottom: 30px; font-family: var(--font-heading);">Join Sweetness</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}"
+            style="padding: 10px; margin-bottom: 20px; border-radius: 5px; text-align: center; background: {{ '#d4edda' if category == 'success' else '#f8d7da' }}; color: {{ '#155724' if category == 'success' else '#721c24' }};">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('auth.register') }}" method="POST">
+            <div style="margin-bottom: 20px;">
+                <label for="name" style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name</label>
+                <input type="text" id="name" name="name" required
+                    style="width: 100%; padding: 12px; border: 1px solid #ffdde1; border-radius: 10px; outline: none;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="email" style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address</label>
+                <input type="email" id="email" name="email" required
+                    style="width: 100%; padding: 12px; border: 1px solid #ffdde1; border-radius: 10px; outline: none;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="password" style="display: block; margin-bottom: 8px; font-weight: 600;">Password</label>
+                <input type="password" id="password" name="password" required minlength="6"
+                    style="width: 100%; padding: 12px; border: 1px solid #ffdde1; border-radius: 10px; outline: none;">
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <label for="confirm_password" style="display: block; margin-bottom: 8px; font-weight: 600;">Confirm
+                    Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required minlength="6"
+                    style="width: 100%; padding: 12px; border: 1px solid #ffdde1; border-radius: 10px; outline: none;">
+                <small id="password-error" style="color: #dc3545; display: none; margin-top: 5px;">Passwords do not
+                    match</small>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+        </form>
+
+        <script>
+            const form = document.querySelector('form');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm_password');
+            const passwordError = document.getElementById('password-error');
+
+            form.addEventListener('submit', function (e) {
+                if (password.value !== confirmPassword.value) {
+                    e.preventDefault();
+                    passwordError.style.display = 'block';
+                    confirmPassword.style.borderColor = '#dc3545';
+                } else {
+                    passwordError.style.display = 'none';
+                    confirmPassword.style.borderColor = '#ffdde1';
+                }
+            });
+
+            confirmPassword.addEventListener('input', function () {
+                if (password.value === confirmPassword.value) {
+                    passwordError.style.display = 'none';
+                    confirmPassword.style.borderColor = '#ffdde1';
+                }
+            });
+        </script>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+            Already have an account? <a href="{{ url_for('auth.login') }}"
+                style="color: var(--accent-dark-pink); font-weight: 600;">Login here</a>
+        </p>
+    </div>
+</main>
+{% endblock %}

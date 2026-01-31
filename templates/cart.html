@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+        <p>Review your delicious selection before checking out!</p>
+    </div>
+    <div class="wave-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,2.92V0h-1200V93.25C120,44.75,221.39,64.44,321.39,56.44Z"
+                class="shape-fill"></path>
+        </svg>
+    </div>
+</section>
+
+<section class="cart-section">
+    <div class="container">
+        <div class="cart-container">
+            <!-- Cart Items Table -->
+            <div class="cart-table-wrapper">
+                <table class="cart-table" id="full-cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-table-body">
+                        <!-- Items injected via JS -->
+                    </tbody>
+                </table>
+                <div id="empty-cart-message" style="display: none; text-align: center; padding: 40px;">
+                    <h3>Your cart is currently empty.</h3>
+                    <a href="{{ url_for('flavors') }}" class="btn">Browse Flavors</a>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h3>Cart Totals</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="page-cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="page-cart-total">$0.00</span>
+                </div>
+                <button class="btn checkout-btn-full">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // We will reuse the global 'cart' variable from cart.js if possible, 
+        // but cart.js runs inside its own scope. 
+        // We need to modify cart.js to expose a render function OR we just duplicate logic slightly 
+        // specifically for this page, reading from localStorage.
+        // Actually, cart.js runs on every page (base.html).
+
+        // Let's add a listener for the custom event 'cartUpdated' if we implement one, 
+        // or just poll/read localStorage.
+
+        const renderPageCart = () => {
+            const cartData = JSON.parse(localStorage.getItem('cupcakeCart')) || [];
+            const tbody = document.getElementById('cart-table-body');
+            const emptyMsg = document.getElementById('empty-cart-message');
+            const tableElement = document.getElementById('full-cart-table');
+            const subtotalEl = document.getElementById('page-cart-subtotal');
+            const totalEl = document.getElementById('page-cart-total');
+
+            if (!tbody) return; // Not on cart page
+
+            tbody.innerHTML = '';
+
+            if (cartData.length === 0) {
+                tableElement.style.display = 'none';
+                emptyMsg.style.display = 'block';
+                subtotalEl.textContent = '$0.00';
+                totalEl.textContent = '$0.00';
+                return;
+            }
+
+            tableElement.style.display = 'table';
+            emptyMsg.style.display = 'none';
+
+            let total = 0;
+
+            cartData.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="cart-product-info">
+                            <img src="${item.image}" alt="${item.title}" class="cart-product-img">
+                            <span style="font-weight: 600;">${item.title}</span>
+                        </div>
+                    </td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="window.changeQuantity('${item.id}', -1)">-</button>
+                            <span class="qty-display">${item.quantity}</span>
+                            <button class="qty-btn" onclick="window.changeQuantity('${item.id}', 1)">+</button>
+                        </div>
+                    </td>
+                    <td>$${itemTotal.toFixed(2)}</td>
+                    <td>
+                        <button class="remove-item-btn" onclick="window.removeFromCart('${item.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            subtotalEl.textContent = `$${total.toFixed(2)}`;
+            totalEl.textContent = `$${total.toFixed(2)}`;
+        };
+
+        // Render immediately
+        renderPageCart();
+
+        // Listen for updates (monkey-patching the window functions in cart.js or using an interval?)
+        // Better: Modify cart.js to dispatch an event. 
+        // For now, let's use a MutationObserver or a simple event listener if we modify cart.js.
+        // Or simpler: We define a function 'window.updatePageCart' that cart.js calls if it exists.
+        window.updatePageCartUI = renderPageCart;
+    });
+</script>
+{% endblock %}

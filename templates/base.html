@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Cupcake Theme</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}"> <!-- Added Cart CSS -->
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- User also has style.css open, so we can include it or leave it. The plan said main.css, so sticking to that mostly. -->
+    {% block styles %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-cupcake"><i class="fas fa-cookie-bite"></i></div>
+            <div class="loader-text">Loading Sweetness...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="https://placehold.co/40x40/FF9EAA/white?text=C" alt="Logo" style="border-radius: 50%;">
+                <span>CupcakeWin</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('flavors') }}">Flavors</a></li>
+                <li><a href="{{ url_for('contact.contact') }}">Contact</a></li>
+                {% if session.get('user_id') %}
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('cart') }}" class="btn">Order Now</a></li>
+                <!-- Cart Icon -->
+                <li class="nav-cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal-overlay">
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h2>Your Cart 🧁</h2>
+                <button class="close-cart-btn">&times;</button>
+            </div>
+            <div class="cart-items">
+                <!-- Items will be injected here via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">$0.00</span>
+                </div>
+                <button class="checkout-btn" onclick="window.location.href='{{ url_for('cart') }}'">View Full
+                    Cart</button>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-wave-top">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,2.92V0h-1200V93.25C120,44.75,221.39,64.44,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <!-- Column 1: Brand & Social -->
+            <div class="footer-widget">
+                <div class="logo" style="margin-bottom: 1rem;">
+                    <span style="font-size: 1.8rem;">CupcakeWin</span>
+                </div>
+                <p class="footer-description">Baking happiness into every bite since 2012. Our cupcakes are made with
+                    love and the finest ingredients.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-widget">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('index') }}"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i>
+                            Home</a>
+                    </li>
+                    <li><a href="{{ url_for('about') }}"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i>
+                            About
+                            Us</a></li>
+                    <li><a href="{{ url_for('flavors') }}"><i class="fas fa-chevron-right"
+                                style="font-size: 0.8rem;"></i>
+                            Flavors</a></li>
+                    <li><a href="{{ url_for('contact.contact') }}"><i class="fas fa-chevron-right"
+                                style="font-size: 0.8rem;"></i>
+                            Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact Info -->
+            <div class="footer-widget">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"
+                            style="margin-right: 10px; color: var(--accent-dark-pink);"></i> 123 Sweet Street, Baker's
+                        City, BC 12345</li>
+                    <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--accent-dark-pink);"></i> (555)
+                        123-4567</li>
+                    <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--accent-dark-pink);"></i>
+                        hello@cupcakewin.com</li>
+                    <li><i class="fas fa-clock" style="margin-right: 10px; color: var(--accent-dark-pink);"></i> Mon -
+                        Sat: 9:00 AM - 8:00 PM</li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Newsletter -->
+            <div class="footer-widget">
+                <h3>Newsletter</h3>
+                <p class="footer-description">Subscribe for sweet updates and special offers!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CupcakeWin. All rights reserved. | Crafted with <i class="fas fa-heart"
+                    style="color: var(--accent-dark-pink);"></i></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/base.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}" defer></script> <!-- Added Cart JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

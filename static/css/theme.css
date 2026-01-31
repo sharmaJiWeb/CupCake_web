@@ -1,0 +1,31 @@
+:root {
+    /* Color Palette */
+    --bg-primary: #FFF0F5;
+    /* Lavender Blush - Top section */
+    --bg-secondary: #FFFFFF;
+    /* White - Content */
+    --bg-gradient: linear-gradient(180deg, #FFF0F5 0%, #FFF5EE 100%);
+
+    --accent-pink: #FFC1CC;
+    --accent-dark-pink: #FF9EAA;
+    --accent-yellow: #FFF8DC;
+    --accent-orange: #FFDAB9;
+
+    --text-heading: #5D4037;
+    /* Dark Brown */
+    --text-body: #8D6E63;
+    /* Lighter Brown */
+    --text-light: #FFFFFF;
+
+    --btn-primary-bg: #FF9EAA;
+    --btn-primary-hover: #FF8596;
+    --btn-text: #FFFFFF;
+
+    /* Typography */
+    --font-heading: 'Fredoka', cursive, sans-serif;
+    --font-body: 'Nunito', sans-serif;
+
+    /* Spacing */
+    --section-padding: 4rem 2rem;
+    --border-radius-lg: 20px;
+}

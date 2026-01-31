@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<header class="about-hero">
+    <div class="about-hero-content fade-up">
+        <h1>Baking Life Sweet</h1>
+        <p>Since 2012, we've been crafting moments of joy, one cupcake at a time.</p>
+    </div>
+</header>
+
+<main>
+    <!-- Brand Story Section -->
+    <section class="about-section fade-up">
+        <h2 class="section-title">Our Sweet Beginnings</h2>
+        <div class="story-container">
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80"
+                    alt="Baking in progress">
+            </div>
+            <div class="story-text">
+                <h3>From Home Kitchen to Your Heart</h3>
+                <p>
+                    What started as a Sunday passion project in a tiny apartment kitchen has blossomed into CupcakeWin.
+                    Disha Sharma began baking with a simple mission: to create cupcakes that didn't just look good, but
+                    tasted like a warm hug.
+                </p>
+                <p>
+                    After perfecting family recipes and experimenting with wild flavor combinations, the demand grew
+                    from friends and family to the entire neighborhood. Today, we still bake with that same love and
+                    attention to detail, ensuring every swirl of frosting is perfect.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="about-section fade-up" style="background-color: #fdfdfd;">
+        <h2 class="section-title">Our Purpose</h2>
+        <div class="mission-vision-container">
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-heart"></i></div>
+                <h3>Our Mission</h3>
+                <p>To spread happiness through the magic of freshly baked treats, using only the finest, honest
+                    ingredients.</p>
+            </div>
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-star"></i></div>
+                <h3>Our Vision</h3>
+                <p>To be the world’s most loved cupcake brand, creating a community where every customer feels like
+                    family.</p>
+            </div>
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Our Values</h3>
+                <p>Quality, Creativity, and Sustainability. We believe in baking responsibly and deliciously.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baking Process -->
+    <section class="about-section fade-up">
+        <h2 class="section-title">The Magic Behind the Muffin</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-icon-wrapper">
+                    <i class="fas fa-wheat-awn"></i>
+                </div>
+                <h4>Sourcing</h4>
+                <p>We source local, organic flour and free-range eggs.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon-wrapper">
+                    <i class="fas fa-blender"></i>
+                </div>
+                <h4>Mixing</h4>
+                <p>Batters are hand-mixed in small batches for perfect texture.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon-wrapper">
+                    <i class="fas fa-fire-alt"></i>
+                </div>
+                <h4>Baking</h4>
+                <p>Baked slow and low to retain moisture and fluffiness.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon-wrapper">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h4>Decorating</h4>
+                <p>Hand-frosted with our signature buttercream swirls.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Trust / Stats -->
+    <section class="trust-section fade-up">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="10" data-suffix="+">0</span>
+                <span class="stat-label">Years of Baking</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="50000" data-suffix="+">0</span>
+                <span class="stat-label">Cupcakes Sold</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="100" data-suffix="%">0</span>
+                <span class="stat-label">Made with Love</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="5" data-suffix=".0">0</span>
+                <span class="stat-label">Average Rating</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/about.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container hero-content">
+        <div class="hero-text animate-on-scroll slide-left">
+            <h4>Sweet & Delicious</h4>
+            <h1>Cupcakes<br>With Love!</h1>
+            <p>Indulge in our freshly baked, handcrafted cupcakes made with the finest ingredients and a whole lot
+                of love.</p>
+            <div class="hero-btns">
+                <a href="{{ url_for('flavors') }}" class="btn">View Flavors</a>
+            </div>
+        </div>
+        <div class="hero-image-wrapper animate-on-scroll slide-right delay-200">
+            <div class="hero-blob"></div>
+            <!-- Placeholder for the main cupcake image -->
+            <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Delicious Cupcake" class="hero-img">
+        </div>
+    </div>
+    <!-- Wave Divider Bottom -->
+    <div class="wave-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                class="shape-fill"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll pop-in delay-100">
+                <div class="feature-icon-blob">
+                    <img src="{{ url_for('static', filename='images/feature_cream2.svg') }}" alt="Icon">
+                </div>
+                <h3>Made with Love</h3>
+                <p>Every cupcake is crafted by hand with passion.</p>
+            </div>
+            <div class="feature-card animate-on-scroll pop-in delay-200">
+                <div class="feature-icon-blob" style="background-color: var(--accent-pink);">
+                    <img src="{{ url_for('static', filename='images/feature_waffle2.svg') }}" alt="Icon">
+                </div>
+                <h3>Fresh Ingredients</h3>
+                <p>We use only the freshest locally sourced items.</p>
+            </div>
+            <div class="feature-card animate-on-scroll pop-in delay-300">
+                <div class="feature-icon-blob" style="background-color: var(--accent-orange);">
+                    <img src="{{ url_for('static', filename='images/icon_rainbow.svg') }}" alt="Icon - Fast Delivery">
+                </div>
+                <h3>Fast Delivery</h3>
+                <p>Straight from our oven to your doorstep.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Highlight Section 1 (Image Left) -->
+<section class="highlight-section">
+    <div class="container highlight-container">
+        <div class="highlight-image animate-on-scroll slide-right">
+            <div class="blob-bg blob-yellow"></div>
+            <img src="{{ url_for('static', filename='images/feature_waffle.png') }}" alt="Feature 1 - Waffle Cupcakes">
+        </div>
+        <div class="highlight-text animate-on-scroll slide-left">
+            <h2>Cop Worlts</h2>
+            <p>Experience the crunch of our special waffle-topped cupcakes. A perfect blend of breakfast and dessert
+                that melts in your mouth.</p>
+            <br>
+            <a href="#" class="btn" style="background-color: var(--accent-orange); color: var(--text-heading);">Learn
+                More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Highlight Section 2 (Image Right) -->
+<section class="highlight-section reverse">
+    <div class="container highlight-container">
+        <div class="highlight-image animate-on-scroll slide-left">
+            <div class="blob-bg blob-pink" style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;"></div>
+            <img src="{{ url_for('static', filename='images/feature_cream.png') }}" alt="Feature 2 - Cream Cupcake">
+        </div>
+        <div class="highlight-text animate-on-scroll slide-right">
+            <h2>Anikt Fiene</h2>
+            <p>Our signature cream frosting is whipped to perfection, creating a cloud-like texture that pairs
+                perfectly with our moist cake base.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

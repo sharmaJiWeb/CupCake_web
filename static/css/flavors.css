@@ -1,0 +1,296 @@
+/* Flavors Page Styles */
+
+/* Header */
+.flavors-header {
+    text-align: center;
+    padding: 6rem 1rem 3rem;
+    background-color: var(--background-soft, #fff5f7);
+    margin-bottom: 2rem;
+}
+
+.flavors-header h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 3rem;
+    color: var(--accent-dark-pink, #d64a6e);
+    margin-bottom: 1rem;
+}
+
+.flavors-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+.filter-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-pink, #ff9eaa);
+    background: white;
+    color: var(--accent-dark-pink, #d64a6e);
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary-pink, #ff9eaa);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 158, 170, 0.4);
+}
+
+/* Flavors Grid */
+.flavors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    padding: 0 1rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Flavor Card */
+.flavor-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.flavor-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.flavor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.flavor-image {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.flavor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.flavor-card:hover .flavor-image img {
+    transform: scale(1.1);
+}
+
+.flavor-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-dark-pink, #d64a6e);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.flavor-content {
+    padding: 1.5rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.flavor-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.flavor-description {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.flavor-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-dark-pink, #d64a6e);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.order-btn,
+.add-to-cart-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--btn-primary-bg, #FF9EAA);
+    color: var(--btn-text, white);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-heading, 'Fredoka', sans-serif);
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(255, 158, 170, 0.3);
+    margin-top: 0.5rem;
+}
+
+.order-btn:hover,
+.add-to-cart-btn:hover {
+    background: var(--btn-primary-hover, #FF8596);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 158, 170, 0.4);
+}
+
+.order-btn:active,
+.add-to-cart-btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 5px rgba(255, 158, 170, 0.2);
+}
+
+
+/* Responsive Breakpoints */
+
+/* Tablet (Landscape & Portrait) */
+@media (max-width: 1024px) {
+    .flavors-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 0 1.5rem 4rem;
+    }
+
+    .flavors-header h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .flavors-header {
+        padding: 4rem 1rem 2rem;
+    }
+
+    .flavors-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .flavors-grid {
+        gap: 1.5rem;
+    }
+
+    .filter-bar {
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 600px) {
+    .flavors-header h1 {
+        font-size: 2rem;
+    }
+
+    .flavors-header p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .filter-bar {
+        gap: 0.5rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        /* Space for scrollbar */
+        padding-left: 1rem;
+        padding-right: 1rem;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+        /* Horizontal scroll */
+    }
+
+    /* Hide scrollbar for cleaner look but keep functionality */
+    .filter-bar::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .filter-bar::-webkit-scrollbar-thumb {
+        background: var(--accent-pink);
+        border-radius: 4px;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Use 1 column for very small screens, but maybe 2 for larger phones if possible, 
+       but 1fr with minmax usually handles it. 
+       Let's force single column for readability on small screens. */
+    .flavors-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem 3rem;
+    }
+
+    .flavor-card {
+        max-width: 100%;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .flavor-image {
+        height: 220px;
+    }
+
+    .flavor-content {
+        padding: 1.25rem;
+    }
+
+    .flavor-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 380px) {
+    .flavors-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .flavor-image {
+        height: 200px;
+    }
+}

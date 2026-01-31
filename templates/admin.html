@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="container" style="display: block; min-height: 80vh; padding-top: 150px;">
+
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div>
+            <h1 class="admin-title">Admin Dashboard</h1>
+            <p style="color: #666;">Welcome back, {{ session.get('name', 'Admin') }}! Here's what's happening today.</p>
+        </div>
+        <div style="display: flex; gap: 15px;">
+            <a href="{{ url_for('index') }}" class="btn"
+                style="background: white; color: var(--text-heading); border: 1px solid #eee;">Visit Site</a>
+            <a href="{{ url_for('auth.logout') }}" class="btn"
+                style="background: var(--text-heading); color: white;">Logout</a>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-grid">
+        <div class="stat-card animate-on-scroll pop-in delay-100">
+            <div class="stat-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Total Messages</h3>
+                <p>{{ contacts|length }}</p>
+            </div>
+        </div>
+
+        <div class="stat-card animate-on-scroll pop-in delay-200">
+            <div class="stat-icon" style="background: #fff8e1; color: #ffb300;">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+                <h3>New Users</h3>
+                <p>12</p> <!-- Placeholder -->
+            </div>
+        </div>
+
+        <div class="stat-card animate-on-scroll pop-in delay-300">
+            <div class="stat-icon" style="background: #e3f2fd; color: #1e88e5;">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Orders</h3>
+                <p>8</p> <!-- Placeholder -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages Section -->
+    <section class="data-panel animate-on-scroll slide-up">
+        <div class="panel-header">
+            <h2>Recent Messages</h2>
+            <input type="text" id="search-messages" placeholder="Search messages..."
+                style="padding: 10px; border: 1px solid #eee; border-radius: 10px; width: 250px;">
+        </div>
+
+        {% if contacts %}
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Date & Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td><span class="status-badge new">New</span></td>
+                        <td style="font-weight: 600;">{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td style="max-width: 300px;">{{ contact.message }}</td>
+                        <td style="color: #888; white-space: nowrap;">
+                            {{ contact.timestamp.strftime('%Y-%m-%d %H:%M') if contact.timestamp else 'N/A' }}
+                        </td>
+                        <td>
+                            <button style="border: none; background: none; color: #666; cursor: pointer;"><i
+                                    class="fas fa-ellipsis-v"></i></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div style="text-align: center; padding: 40px; color: #888;">
+            <i class="far fa-folder-open" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+            <p>No messages found in the database.</p>
+        </div>
+        {% endif %}
+    </section>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}
